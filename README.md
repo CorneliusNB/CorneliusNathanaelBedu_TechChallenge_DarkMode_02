@@ -1,2 +1,1 @@
 # CorneliusNathanaelBedu_TechChallenge_DarkMode_02
-# CorneliusNathanaelBedu_TechChallenge_DarkMode_02
