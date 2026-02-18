@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Switch Dark Mode</title>
+    <style>
+        /* --- gaya dasar --- */
+        body {
+            font-family: Arial, sans-serif;
+            /* transisi ini penting biar perubahan warnanya alus */
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            /* warna default (mode terang) */
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* --- gaya pas mode gelap aktif --- */
+        /* kelas 'dark-mode' ini nanti ditambahin lewat javascript */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        /* --- gaya tombol on/off nya --- */
+        
+        /* wadah tombolnya */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* kita pake checkbox tapi diumpetin biar gak keliatan */
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* ini latar belakang tombol yang lonjong */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc; /* warna pas mati (abu-abu) */
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        /* ini buletan putih yang bisa geser */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        /* kalo checkbox-nya aktif (dicentang), ubah warna latar jadi biru */
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        /* kalo checkbox-nya aktif, geser buletannya ke kanan */
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Dark Mode Toggle</h1>
+    
+    <label class="switch">
+        <input type="checkbox" id="modeToggle">
+        <span class="slider"></span>
+    </label>
+
+    <script>
+        // --- javascriptnya di sini ---
+
+        // ambil elemen checkbox-nya berdasarkan id
+        const toggle = document.getElementById('modeToggle');
+        
+        // dengerin kalo ada perubahan di checkbox (diklik)
+        toggle.addEventListener('change', function() {
+            
+            // cek: kalo checkbox-nya dicentang (artinya ON)
+            if (this.checked) {
+                // tambahin kelas 'dark-mode' ke elemen body
+                document.body.classList.add('dark-mode');
+            } else {
+                // kalo gak dicentang (OFF), apus kelasnya
+                document.body.classList.remove('dark-mode');
+            }
+        });
+    </script>
+
+</body>
+</html>
